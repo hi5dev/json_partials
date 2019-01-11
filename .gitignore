@@ -1,7 +1,12 @@
+.DS_Store
 /.bundle/
+/.idea/
+/.rakeTasks
 /.yardoc
+/.yardoc/
 /_yardoc/
 /coverage/
+/doc/
 /doc/
 /pkg/
 /spec/reports/

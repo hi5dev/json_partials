@@ -1,6 +1,6 @@
-require "json_partials/version"
+# frozen_string_literal: true
 
 module JsonPartials
-  class Error < StandardError; end
-  # Your code goes here...
+  autoload :Error, 'json_partials/error'
+  autoload :VERSION, 'json_partials/version'
 end

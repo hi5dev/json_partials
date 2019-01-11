@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  ruby:
+    build: '.'
+    ports:
+      - '1234:1234'
+    volumes:
+      - '.:/usr/src/app'
+    working_dir: '/usr/src/app'
