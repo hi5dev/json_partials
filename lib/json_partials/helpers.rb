@@ -15,21 +15,5 @@ module JsonPartials
     def merge(*hashes)
       hashes.inject({}, &:merge!)
     end
-
-    # Renders the template partial at the given path.
-    #
-    # @param [String] partial_path Path relative to the path given when initializing the Document.
-    # @return [Array | Hash]
-    def render(partial_path)
-      full_path = path.join(partial_path).to_s
-
-      full_path = "#{full_path}.rb" if File.extname(path).empty?
-
-      code = File.read(full_path)
-
-      result = eval(code, binding, full_path.to_s)
-
-      @output = validate!(result)
-    end
   end
 end

@@ -2,6 +2,11 @@
 
 Easily create large JSON documents from smaller partials written in Ruby.
 
+I wrote this gem when working with the
+[Amazon Serverless Application Model](https://github.com/awslabs/serverless-application-model)
+after the template I was working with grew to hundreds lines of code. I needed a way to easily split the template up
+to smaller, easier to manage templates, and compile them into one only when it needed to be uploaded during deployment.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -20,33 +25,42 @@ Or install it yourself as:
 
 ## Usage
 
-### Saving a JSON file.
+Create a new `JsonPartials::Document` linked to the directory of your `.json.rb` templates:
 
 ```ruby
-document = JsonPartials::Document.new(template_path)
-document.render('template.rb')
-document.save('template.json')
+document = JsonPartials::Document.new('./json_templates')
 ```
+
+Then render the template:
+
+```ruby
+document.render('template')
+```
+
+Notice that the file extensions are optional. If no extension is provided, `.json.rb` is implied, unless you disable
+file extensions by setting `default_file_ext` to `false`, `nil`, or an empty string either during or after
+initialization.
+
+You can generate the JSON with `#to_json`, or save it to a file with `#save`:
+
+```ruby
+document.to_json
+document.save('document.json')
+```
+
+**Additional options:**
+
+`default_file_ext` - The default file extension to use for the templates. This defaults to `.json.rb`. When no file
+extension is provided to the `#render` method, this extension is added. To disable it, set it to `false`, `nil`, or
+an empty string.
+
+`pretty` - By default the JSON is minimized. Set this to `true` to include line feeds and indentation.
 
 ### Helpers
 
 The code inside the Ruby templates is executed using `eval` with the binding of the `Document` instance. This means
 all methods in `JsonPartials::Document`, private or public, are accessible to the templates. `JsonPartials::Helpers`
 contains all of the methods accessible by default.
-
-#### Custom Helpers
-
-Best practice for adding custom helpers is to create your own module and include it inside of `JsonPartials::Helpers`:
-
-```ruby
-module MyHelpers
-  def my_helper
-    'Hello world!'
-  end
-end
-
-JsonPartials::Helpers.include(MyHelpers)
-```
 
 #### merge(*hashes)
 
@@ -104,6 +118,19 @@ Merges multiple hashes together.
 }
 ```
 
+#### Custom Helpers
+
+Best practice for adding custom helpers is to create your own module and include it inside of `JsonPartials::Helpers`:
+
+```ruby
+module MyHelpers
+  def my_helper
+    'Hello world!'
+  end
+end
+
+JsonPartials::Helpers.include(MyHelpers)
+```
 
 ## Development
 
