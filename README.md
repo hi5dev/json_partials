@@ -20,6 +20,89 @@ Or install it yourself as:
 
 ## Usage
 
+### Saving a JSON file.
+
+```ruby
+document = JsonPartials::Document.new(template_path)
+document.render('template.rb')
+document.save('template.json')
+```
+
+### Helpers
+
+The code inside the Ruby templates is executed using `eval` with the binding of the `Document` instance. This means
+all methods in `JsonPartials::Document`, private or public, are accessible to the templates. `JsonPartials::Helpers`
+contains all of the methods accessible by default.
+
+#### Custom Helpers
+
+Best practice for adding custom helpers is to create your own module and include it inside of `JsonPartials::Helpers`:
+
+```ruby
+module MyHelpers
+  def my_helper
+    'Hello world!'
+  end
+end
+
+JsonPartials::Helpers.include(MyHelpers)
+```
+
+#### merge(*hashes)
+
+Merges multiple hashes together.
+
+##### Usage
+
+`merge(hash_a, hash_b, hash_c, ...)`
+
+##### Example
+
+**File: resources.rb**
+
+```ruby
+{
+  resources: merge(
+    render('resource_a'),
+    render('resource_b')
+  )
+}
+```
+
+**File: resource_a.rb**
+
+```ruby
+{
+  resource_a: {
+    name: 'Resource A'
+  }
+} 
+```
+
+**File: resource_b.rb**
+
+```ruby
+{
+  resource_b: {
+    name: 'Resource B'
+  }
+}
+```
+
+**Output**
+
+```json
+{
+  "resources": {
+    "resource_a": {
+      "name": "Resource A"
+    },
+    "resource_b": {
+      "name": "Resource B"
+    }
+  }
+}
+```
 
 
 ## Development
