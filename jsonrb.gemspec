@@ -16,6 +16,12 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ['lib']
 
+  spec.files = Dir[File.expand_path('lib/**/*.rb', __dir__)]
+  spec.files << 'Gemfile'
+  spec.files << 'Gemfile.lock'
+  spec.files << 'jsonrb.gemspec'
+  spec.files << 'README.md'
+
   spec.add_development_dependency 'bundler', '~> 1.17'
   spec.add_development_dependency 'debase', '~> 0.2'
   spec.add_development_dependency 'minitest', '~> 5.11'
