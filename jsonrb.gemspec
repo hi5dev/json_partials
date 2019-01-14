@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+ROOT_PATH = File.expand_path(__dir__)
+
 # Add the lib folder to the Ruby load path.
-($LOAD_PATH << File.expand_path('lib', __dir__)).uniq!
+($LOAD_PATH << File.join(ROOT_PATH, 'lib')).uniq!
 
 require 'jsonrb/version'
 
@@ -17,7 +19,10 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ['lib']
 
-  spec.files = Dir[File.expand_path('lib/**/*.rb', __dir__)]
+  spec.files = Dir[File.join(ROOT_PATH, 'lib', '**', '*.rb')].map do |file|
+    file[ROOT_PATH.length + 1..-1]
+  end
+
   spec.files << 'Gemfile'
   spec.files << 'Gemfile.lock'
   spec.files << 'jsonrb.gemspec'
