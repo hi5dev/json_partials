@@ -2,10 +2,10 @@
 
 require 'test_helper'
 
-module JsonPartials
+module JSONRB
   class ErrorTest < Minitest::Test
     def test_standard_error
-      assert_includes JsonPartials::Error.ancestors, StandardError
+      assert_includes JSONRB::Error.ancestors, StandardError
     end
   end
 end

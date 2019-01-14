@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_partials (0.1.0)
+    jsonrb (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -21,7 +21,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.17)
   debase (~> 0.2)
-  json_partials!
+  jsonrb!
   minitest (~> 5.11)
   rake (~> 10.0)
   ruby-debug-ide (~> 0.6)

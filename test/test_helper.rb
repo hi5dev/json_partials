@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'fileutils'
-require 'json_partials'
+require 'jsonrb'
 require 'minitest/autorun'
 
 # Full path to the project's tmp directory.

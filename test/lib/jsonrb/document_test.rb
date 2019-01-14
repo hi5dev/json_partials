@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-module JsonPartials
+module JSONRB
   class DocumentTest < Minitest::Test
     def teardown
       File.delete(resource_path) if File.exists?(resource_path)
@@ -53,9 +53,9 @@ module JsonPartials
 
     private
 
-    # @return [JsonPartials::Document]
+    # @return [JSONRB::Document]
     def document
-      @document ||= JsonPartials::Document.new(templates_path)
+      @document ||= JSONRB::Document.new(templates_path)
     end
 
     # @return [Hash]

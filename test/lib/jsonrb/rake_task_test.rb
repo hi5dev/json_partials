@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-module JsonPartials
+module JSONRB
   class RakeTaskTest < Minitest::Test
     module RakeMocks
       class << self
@@ -19,14 +19,14 @@ module JsonPartials
       end
     end
 
-    JsonPartials::RakeTask.include(RakeMocks)
+    JSONRB::RakeTask.include(RakeMocks)
 
     def teardown
       File.delete(output_file) if File.exists?(output_file)
     end
 
     def test_config_block
-      task = JsonPartials::RakeTask.new(:build_template) do |t|
+      task = JSONRB::RakeTask.new(:build_template) do |t|
         t.output_file = TEMP_PATH.join('template.json')
         t.template_name = :resources
         t.template_path = fixture_path('merge_test')
@@ -44,7 +44,7 @@ module JsonPartials
 
     def test_invalid_output_file
       error = assert_raises(ArgumentError) do
-        JsonPartials::RakeTask.new(:build_template, valid_options.merge(output_file: nil))
+        JSONRB::RakeTask.new(:build_template, valid_options.merge(output_file: nil))
       end
 
       assert_equal 'output_file cannot be blank', error.message
@@ -52,7 +52,7 @@ module JsonPartials
 
     def test_invalid_template_name
       error = assert_raises(ArgumentError) do
-        JsonPartials::RakeTask.new(:build_template, valid_options.merge(template_name: nil))
+        JSONRB::RakeTask.new(:build_template, valid_options.merge(template_name: nil))
       end
 
       assert_equal 'template_name cannot be blank', error.message
@@ -60,7 +60,7 @@ module JsonPartials
 
     def test_invalid_template_path
       error = assert_raises(ArgumentError) do
-        JsonPartials::RakeTask.new(:build_template, valid_options.merge(template_path: 'invalid'))
+        JSONRB::RakeTask.new(:build_template, valid_options.merge(template_path: 'invalid'))
       end
 
       assert_equal 'invalid template_path: "invalid"', error.message
@@ -72,7 +72,7 @@ module JsonPartials
       
       rake_task
 
-      assert_equal JsonPartials::RakeTask::DESCRIPTION, RakeMocks.description
+      assert_equal JSONRB::RakeTask::DESCRIPTION, RakeMocks.description
       assert_equal :build_template, RakeMocks.task[:name]
       assert_kind_of Proc, RakeMocks.task[:block]
     end
@@ -98,9 +98,9 @@ module JsonPartials
       @template_path ||= fixture_path('merge_test')
     end
 
-    # @return [JsonPartials::RakeTask]
+    # @return [JSONRB::RakeTask]
     def rake_task
-      @rake_task ||= JsonPartials::RakeTask.new(:build_template, valid_options)
+      @rake_task ||= JSONRB::RakeTask.new(:build_template, valid_options)
     end
 
     def valid_options

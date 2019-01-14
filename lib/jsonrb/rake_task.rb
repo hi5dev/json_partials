@@ -3,14 +3,14 @@
 require 'rake'
 require 'rake/tasklib'
 
-module JsonPartials
+module JSONRB
   class RakeTask
     attr_reader :name
     attr_accessor :default_file_ext, :description, :output_file, :pretty, :template_name, :template_path
 
     DESCRIPTION = 'Builds JSON template'
 
-    # @yieldparam [JsonPartials::RakeTask] config
+    # @yieldparam [JSONRB::RakeTask] config
     def initialize(name, options = {})
       @name = name
 
@@ -36,7 +36,7 @@ module JsonPartials
     end
 
     def execute
-      document = JsonPartials::Document.new(template_path, default_file_ext: default_file_ext, pretty: pretty)
+      document = JSONRB::Document.new(template_path, default_file_ext: default_file_ext, pretty: pretty)
       document.render(*Array(template_name))
       document.save(output_file)
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module JsonPartials
+module JSONRB
   # Creates a new JSON document from Ruby files in a given path.
   #
   # @!attribute default_file_ext
@@ -22,7 +22,7 @@ module JsonPartials
   #   When this is +true+, the generated JSON document will contain line feeds and indentation.
   #   @return [true | false]
   class Document
-    include JsonPartials::Helpers
+    include JSONRB::Helpers
 
     attr_accessor :default_file_ext, :pretty
 
@@ -31,7 +31,7 @@ module JsonPartials
     # @param [String] path Full path to the templates.
     # @param [String] default_file_ext The default file extension to use when none is provided in the template names.
     # @param [true | false] pretty When +true+ the document will be formatted to be easy to read.
-    # @return [JsonPartials::Document]
+    # @return [JSONRB::Document]
     def initialize(path, default_file_ext: '.json.rb', pretty: false)
       @default_file_ext = default_file_ext
       @output = {}
@@ -42,7 +42,7 @@ module JsonPartials
     # Gets the full path for the template with the given name.
     #
     # @example
-    #   document = JsonPartials::Document.new('/usr/src/app/templates')
+    #   document = JSONRB::Document.new('/usr/src/app/templates')
     #   document.full_path(:resources, :a) # => '/usr/src/app/templates/resources/a.json.rb'
     #
     # @param [*String | *Symbol] name Name of the template with or without an extension.

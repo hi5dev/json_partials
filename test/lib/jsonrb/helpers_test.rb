@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-module JsonPartials
+module JSONRB
   class HelpersTest < Minitest::Test
-    include JsonPartials::Helpers
+    include JSONRB::Helpers
 
     def test_merge
       one = { one: 1 }

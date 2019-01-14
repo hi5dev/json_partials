@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module JsonPartials
+module JSONRB
   class Error < StandardError
   end
 end

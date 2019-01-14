@@ -2,8 +2,8 @@
 
 require 'test_helper'
 
-class JsonPartialsTest < Minitest::Test
+class JSONRBTest < Minitest::Test
   def test_module_defined
-    assert defined?(JsonPartials)
+    assert defined?(JSONRB)
   end
 end

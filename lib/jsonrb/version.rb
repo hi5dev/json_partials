@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module JsonPartials
+module JSONRB
   # The gem's semantic version.
   #
   # @see https://semver.org

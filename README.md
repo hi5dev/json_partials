@@ -1,4 +1,4 @@
-# JSON Partials
+# JSONRB
 
 Easily create complex JSON documents using Ruby templates.
 
@@ -33,9 +33,9 @@ rendered.
 Then you can set up a Rake task for building the JSON by adding this to your Rakefile:
 
 ```ruby
-require 'json_partials/rake_task'
+require 'jsonrb/rake_task'
 
-JsonPartials::RakeTask.new(:build) do |t|
+JSONRB::RakeTask.new(:build) do |t|
   t.output_file = 'template.json'
   t.template_name = 'aws_template'
   t.template_path = 'config/templates'
@@ -49,7 +49,7 @@ Then you just have to run `rake build` to create the template.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'json_partials'
+gem 'jsonrb'
 ```
 
 And then execute:
@@ -58,7 +58,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install json_partials
+    $ gem install jsonrb
 
 ## Usage
 
@@ -111,12 +111,12 @@ Which get combined together into a single Hash like this:
 ### Using with Rake
 
 ```ruby
-require 'json_partials/rake_task'
+require 'jsonrb/rake_task'
 
 # The name of the task is the only argument the initializer requires. You can
 # also pass a Hash if you prefer instead of using a block to configure the
 # task.
-JsonPartials::RakeTask.new(:task_name) do |t|
+JSONRB::RakeTask.new(:task_name) do |t|
   ## Required configuration.
 
   # Full path to the JSON output file.
@@ -150,7 +150,7 @@ end
 ### Using without Rake
 
 ```ruby
-require 'json_partials'
+require 'jsonrb'
 
 # Full path to the directory with the templates.
 template_path = File.expand_path('config/templates', __dir__)
@@ -163,7 +163,7 @@ output_file = File.expand_path('template.json', __dir__)
 #
 # default_file_ext - Defaults to '.json.rb'
 # pretty - Defaults to false.
-document = JsonPartials::Document.new(template_path)
+document = JSONRB::Document.new(template_path)
 
 # Render the entry-point template.
 document.render('template_name')
@@ -180,4 +180,4 @@ instead of Bash, so if you need to open a shell run `docker-compose run ruby ash
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/hi5dev/json_partials.
+Bug reports and pull requests are welcome on GitHub at https://github.com/hi5dev/jsonrb.

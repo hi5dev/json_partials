@@ -3,16 +3,16 @@
 # Add the lib folder to the Ruby load path.
 ($LOAD_PATH << File.expand_path('lib', __dir__)).uniq!
 
-require 'json_partials/version'
+require 'jsonrb/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'json_partials'
-  spec.version = JsonPartials::VERSION
+  spec.name = 'jsonrb'
+  spec.version = JSONRB::VERSION
   spec.authors = ['Travis Haynes']
   spec.email = ['travis@hi5dev.com']
 
   spec.summary = 'Build JSON from multiple Ruby sources that output a Hash or Array.'
-  spec.homepage = 'https://github.com/hi5dev/json_partials'
+  spec.homepage = 'https://github.com/hi5dev/jsonrb'
 
   spec.require_paths = ['lib']
 
