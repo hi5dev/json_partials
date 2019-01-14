@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.version = JSONRB::VERSION
   spec.authors = ['Travis Haynes']
   spec.email = ['travis@hi5dev.com']
+  spec.licenses = ['Apache-2.0']
 
   spec.summary = 'Build JSON from multiple Ruby sources that output a Hash or Array.'
   spec.homepage = 'https://github.com/hi5dev/jsonrb'
@@ -20,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.files << 'Gemfile'
   spec.files << 'Gemfile.lock'
   spec.files << 'jsonrb.gemspec'
+  spec.files << 'LICENSE'
   spec.files << 'README.md'
 
   spec.add_development_dependency 'bundler', '~> 1.17'
